@@ -5,12 +5,14 @@ const Messages = require('../messages/messages-model.js');
 
 const router = express.Router();
 
-const validateBodyForNameAndText
+const validateBodyForNameAndText = (req, res, next) => {
+  // validate req.body
+  // make sure req.body has certain properties { name, text }
+}
 
 const validateId = (req, res, next) => {
   const { id } = req.params;
-  // validate req.body
-  // make sure req.body has certain properties
+
   Hubs.findById(id)
     .then(data => { // if id legit then data is **object** (the hub) otherwise **undefined**
       if (data) {
