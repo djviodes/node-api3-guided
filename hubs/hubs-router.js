@@ -151,7 +151,7 @@ router.post('/:id/messages', (req, res) => {
 });
 
 router.use((err, req, res, next) => {
-  res.status(500)
-})
+  res.status(500).json({ message: err })
+});
 
 module.exports = router;
