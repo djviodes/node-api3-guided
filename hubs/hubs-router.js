@@ -13,7 +13,7 @@ const validateId = (req, res, next) => {
       if (data) {
         // tack the hub to the req (that way endpoints downstream have the hub already!!!)
         req.hub = data
-        // allow the req/res continue traveling (with the hub attached to the req obj)
+        // allow the req/res to continue traveling (with the hub attached to the req obj)
         next()
       } else {
         // short circuit everything and respond to the client
