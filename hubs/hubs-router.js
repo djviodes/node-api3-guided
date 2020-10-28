@@ -9,7 +9,6 @@ const validateId = (req, res, next) => {
   const { id } = req.params;
   Hubs.findById(id)
     .then(data => { // if id legit then data is **object** (the hub) otherwise **undefined**
-      console.log(data)
       if (data) {
         // tack the hub to the req (that way endpoints downstream have the hub already!!!)
         req.hub = data
@@ -22,6 +21,7 @@ const validateId = (req, res, next) => {
     })
     .catch(error => {
       console.log(error.message)
+      res.status(500).json({ message: 'something bad happened' })
     })
 }
 
