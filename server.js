@@ -4,7 +4,7 @@ const hubsRouter = require('./hubs/hubs-router.js');
 
 const server = express();
 
-server.use(express.json());
+server.use(express.json()); // inserting a piece of middleware
 
 server.use('/api/hubs', hubsRouter);
 
