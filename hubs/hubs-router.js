@@ -53,7 +53,7 @@ router.get('/', (req, res) => {
 
 // /api/hubs/:id
 
-router.get('/:id', [validateId], (req, res) => {
+router.get('/:id', validateId, validateBodyForNameAndText, (req, res) => {
   // Hubs.findById(req.params.id)
   //   .then(hub => {
   //     if (hub) {
