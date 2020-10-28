@@ -22,7 +22,9 @@ const moodyGateKeeper = (req, res, next) => {
   // if the seconds multiple of 3, respond with a 403 and a "not allowed" message
   // otherwise call next to allow the request to proceed...
   if (new Date().getSeconds() % 3 === 0) {
-    res.sta
+    res.status(403).json({ message: 'Sorry, you shall not pass' });
+  } else {
+    next();
   }
 };
 
