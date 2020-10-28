@@ -53,7 +53,7 @@ router.get('/', (req, res) => {
 
 // /api/hubs/:id
 
-router.get('/:id', validateId, validateBodyForNameAndText, (req, res) => {
+router.get('/:id', validateId, (req, res) => {
   // Hubs.findById(req.params.id)
   //   .then(hub => {
   //     if (hub) {
@@ -85,7 +85,7 @@ router.post('/', (req, res) => {
     });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', validateId, (req, res) => {
   Hubs.remove(req.params.id)
     .then(count => {
       if (count > 0) {
