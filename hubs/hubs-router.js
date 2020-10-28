@@ -27,7 +27,8 @@ const validateId = (req, res, next) => {
     })
     .catch(error => {
       console.log(error.message)
-      res.status(500).json({ message: 'something bad happened' })
+      // res.status(500).json({ message: 'something bad happened' })
+      next('The id does not exist at all')
     })
 }
 
@@ -37,7 +38,7 @@ router.use((req, res, next) => {
 });
 
 // this only runs if the url has /api/hubs in it
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
   Hubs.find(req.query)
     .then(hubs => {
       res.status(200).json(hubs);
