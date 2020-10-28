@@ -6,9 +6,9 @@ const hubsRouter = require('./hubs/hubs-router.js');
 
 const server = express();
 
-const ourAwesomeMiddleware = (adjective) => (req, res, next) => {
+const ourAwesomeMiddleware = (adjective) => (req, res, next) => {/
   console.log(`this middleware is rather ${adjective}`);
-  next()
+  next();
 };
 
 // adding global middlewares with server.use
@@ -16,7 +16,7 @@ const ourAwesomeMiddleware = (adjective) => (req, res, next) => {
 server.use(express.json()); // the req now has a body object
 server.use(helmet()); // the res now has better headers
 server.use(morgan('dev')); // logs things to the console
-server.use(ourAwesomeMiddleware());
+server.use(ourAwesomeMiddleware('useless'));
 
 // the router is a group of middlewares
 server.use('/api/hubs', hubsRouter);
