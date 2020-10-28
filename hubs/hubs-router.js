@@ -5,6 +5,10 @@ const Messages = require('../messages/messages-model.js');
 
 const router = express.Router();
 
+const validateId = (req, res, next) => {
+  
+}
+
 router.use((req, res, next) => {
   console.log('inside the hubs router');
   next();
@@ -27,7 +31,7 @@ router.get('/', (req, res) => {
 
 // /api/hubs/:id
 
-router.get('/:id', [validateId, validateThis, validataThat], (req, res) => {
+router.get('/:id', [validateId], (req, res) => {
   Hubs.findById(req.params.id)
     .then(hub => {
       if (hub) {
