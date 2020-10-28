@@ -8,6 +8,12 @@ const router = express.Router();
 const validateId = (req, res, next) => {
   const { id } = req.params;
   Hubs.findById(id)
+    .then(data => {
+      console.log(data)
+    })
+    .catch(error => {
+      console.log(error.message)
+    })
 }
 
 router.use((req, res, next) => {
