@@ -16,7 +16,8 @@ const validateId = (req, res, next) => {
         // allow the req/res continue travelling (with the hub attached to req)
         next()
       } else {
-
+        // short circuit everything -> respoind to the client
+        res.status(404).json({ message: 'There is no hub with id ' + id })
       }
     })
     .catch(error => {
