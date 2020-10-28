@@ -22,13 +22,13 @@ const validateId = (req, res, next) => {
         next()
       } else {
         // short circuit everything and respond to the client
-        res.status(404).json({ message: 'There is no hub with id ' + id })
+        next('There is no hub with id ' + id)
       }
     })
     .catch(error => {
       console.log(error.message)
       // res.status(500).json({ message: 'something bad happened' })
-      next('The id does not exist at all')
+      next('Something crashed and burned')
     })
 }
 
