@@ -17,13 +17,15 @@ const ourAwesomeMiddleware = (adjective) => (req, res, next) => {
   next();
 };
 
+const moodyGateKeeper = 
+
 // adding global middlewares with server.use
 // the req and the res objects travel through them
 server.use(express.json()); // the req now has a body object
 server.use(helmet()); // the res now has better headers
 server.use(morgan('dev')); // logs things to the console
 server.use(ourAwesomeMiddleware('useless')); // configurable console.log
-server.use(moodyGateKeeper)
+server.use(moodyGateKeeper);
 
 // the router is a group of middlewares
 server.use('/api/hubs', hubsRouter);
