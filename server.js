@@ -48,9 +48,8 @@ server.get('/', (req, res) => {
   `);
 });
 
-
 server.use((error, req, res, next) => {
   res.status(500).json({ message: error })
-})
+});
 
 module.exports = server;

@@ -150,4 +150,8 @@ router.post('/:id/messages', (req, res) => {
     });
 });
 
+router.use((err, req, res, next) => {
+  res.status(500)
+})
+
 module.exports = router;
