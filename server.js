@@ -11,7 +11,9 @@ const server = express();
 server.use(express.json()); // the req now has a body object
 server.use(helmet()); // the res now has better headers
 server.use(morgan('dev')); // logs things to the console
-server.use()
+server.use((req, res, next) => {
+  console.log('this middleware is rather useless')
+})
 
 // the router is a group of middlewares
 server.use('/api/hubs', hubsRouter);
