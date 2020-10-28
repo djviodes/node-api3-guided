@@ -5,9 +5,11 @@ const hubsRouter = require('./hubs/hubs-router.js');
 
 const server = express();
 
-server.use(express.json()); // inserting middleware
+// adding global middlewares with server.use
+server.use(express.json()); 
 server.use(helmet()) // the req and the res objects travel through them
 
+// the router is a group of middlewares
 server.use('/api/hubs', hubsRouter);
 
 server.get('/', (req, res) => {
