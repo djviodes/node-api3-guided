@@ -6,7 +6,7 @@ const Messages = require('../messages/messages-model.js');
 const router = express.Router();
 
 const validateId = (req, res, next) => {
-  
+  const { id } = req.params;
 }
 
 router.use((req, res, next) => {
