@@ -10,6 +10,10 @@ const validateId = (req, res, next) => {
   Hubs.findById(id)
     .then(data => { // if id legit -> data is **object** (the hub) otherwise **undefined**
       console.log(data)
+      if (data) {
+        // tack the hub to the req (that way enopoints downstream have the hub already!!!)
+        req.hub = data
+      }
     })
     .catch(error => {
       console.log(error.message)
