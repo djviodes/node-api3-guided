@@ -13,6 +13,10 @@ const validateId = (req, res, next) => {
       if (data) {
         // tack the hub to the req (that way enopoints downstream have the hub already!!!)
         req.hub = data
+        // allow the req/res continue travelling (with the hub attached to req)
+        next()
+      } else {
+
       }
     })
     .catch(error => {
