@@ -17,7 +17,10 @@ const ourAwesomeMiddleware = (adjective) => (req, res, next) => {
   next();
 };
 
-const moodyGateKeeper = 
+const moodyGateKeeper = (req, res, next) => {
+  // get seconds of Unix time `new Date().getSeconds()`
+  //
+}
 
 // adding global middlewares with server.use
 // the req and the res objects travel through them
