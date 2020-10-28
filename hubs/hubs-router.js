@@ -27,7 +27,7 @@ router.get('/', (req, res) => {
 
 // /api/hubs/:id
 
-router.get('/:id', (req, res) => {
+router.get('/:id', [validateId, validateThis, validataThat], (req, res) => {
   Hubs.findById(req.params.id)
     .then(hub => {
       if (hub) {
