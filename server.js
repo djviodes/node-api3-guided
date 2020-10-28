@@ -20,7 +20,7 @@ const ourAwesomeMiddleware = (adjective) => (req, res, next) => {
 server.use(express.json()); // the req now has a body object
 server.use(helmet()); // the res now has better headers
 server.use(morgan('dev')); // logs things to the console
-server.use(ourAwesomeMiddleware('useless'));
+server.use(ourAwesomeMiddleware('useless')); // configurable console.log
 
 // the router is a group of middlewares
 server.use('/api/hubs', hubsRouter);
