@@ -8,10 +8,11 @@ const server = express();
 
 const ourAwesomeMiddleware = (adjective) => (req, res, next) => {
   // modify headers on the res (like helmet)
+  res.append('X-Lambda', 'web-35');
   // add information to the req object (for the benefit of middlewares downstream)
+  req.lambda = 'Web 35 rulez';
   // verify and validate info comming in the req (like making sure an :id exists)
   // make sure the body of the request has certain properties...
-  res.append('X-Lambda', 'web-35');
   console.log(`this middleware is rather ${adjective}`);
   next();
 };
