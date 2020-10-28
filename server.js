@@ -10,7 +10,7 @@ const server = express();
 // the req and the res objects travel through them
 server.use(express.json()); // the req now has a body object
 server.use(helmet()); // the res now has better headers
-server.use(morgan()); // logs things to the console
+server.use(morgan('dev')); // logs things to the console
 
 // the router is a group of middlewares
 server.use('/api/hubs', hubsRouter);
