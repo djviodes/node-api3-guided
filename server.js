@@ -6,7 +6,10 @@ const hubsRouter = require('./hubs/hubs-router.js');
 
 const server = express();
 
-const ourAwesomeMiddleware = (adjective) => (req, res, next) => {/
+const ourAwesomeMiddleware = (adjective) => (req, res, next) => {
+  // modify headers on the res (like helmet)
+  // add information to the req object (for the benefit of middlewares downstream)
+  // verify and validate info comming in the req (like making sure an id)
   console.log(`this middleware is rather ${adjective}`);
   next();
 };
