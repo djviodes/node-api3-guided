@@ -22,7 +22,7 @@ const validateId = (req, res, next) => {
         next()
       } else {
         // short circuit everything and respond to the client
-        next({ code: 400, message: 'There is no hub with id ' + id})
+        next({ code: 400, message: 'There is no hub with id ' + id })
       }
     })
     .catch(error => {
