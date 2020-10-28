@@ -22,14 +22,14 @@ const validateId = (req, res, next) => {
         next()
       } else {
         // short circuit everything and respond to the client
-        // or call next passing some error
+        // or call next passing some information (which makes the closest error handling middleware take it)
         next({ code: 400, message: 'There is no hub with id ' + id })
       }
     })
     .catch(error => {
       console.log(error.message)
       // res.status(500).json({ message: 'something bad happened' })
-      next({ code: 500, message: 'Something crashed and burned'})
+      next({ code: 500, message: 'Something crashed and burned' })
     })
 }
 
