@@ -6,6 +6,11 @@ const hubsRouter = require('./hubs/hubs-router.js');
 
 const server = express();
 
+const ourAwesomeMiddleware = () => (req, res, next) => {
+  console.log('this middleware is rather useless');
+  next()
+};
+
 // adding global middlewares with server.use
 // the req and the res objects travel through them
 server.use(express.json()); // the req now has a body object
