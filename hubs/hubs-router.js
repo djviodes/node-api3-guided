@@ -152,6 +152,7 @@ router.post('/:id/messages', (req, res) => {
 });
 
 router.use((err, req, res, next) => {
+  // if it's some special error call next() and allow the next middleware to deal with the problem
   res.status(err.code).json({ message: err.message })
 });
 
