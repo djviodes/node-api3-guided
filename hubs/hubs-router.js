@@ -54,21 +54,21 @@ router.get('/', (req, res) => {
 // /api/hubs/:id
 
 router.get('/:id', [validateId], (req, res) => {
-  Hubs.findById(req.params.id)
-    .then(hub => {
-      if (hub) {
-        res.status(200).json(hub);
-      } else {
-        res.status(404).json({ message: 'Hub not found' });
-      }
-    })
-    .catch(error => {
-      // log error to server
-      console.log(error);
-      res.status(500).json({
-        message: 'Error retrieving the hub',
-      });
-    });
+  // Hubs.findById(req.params.id)
+  //   .then(hub => {
+  //     if (hub) {
+        res.status(200).json(req.hub);
+  //     } else {
+  //       res.status(404).json({ message: 'Hub not found' });
+  //     }
+  //   })
+  //   .catch(error => {
+  //     // log error to server
+  //     console.log(error);
+  //     res.status(500).json({
+  //       message: 'Error retrieving the hub',
+  //     });
+  //   });
 });
 
 router.post('/', (req, res) => {
