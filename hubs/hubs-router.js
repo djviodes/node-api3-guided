@@ -22,13 +22,13 @@ const validateId = (req, res, next) => {
         next()
       } else {
         // short circuit everything and respond to the client
-        next('There is no hub with id ' + id)
+        next({ code: 400, message: 'There is no hub with id ' + id})
       }
     })
     .catch(error => {
       console.log(error.message)
       // res.status(500).json({ message: 'something bad happened' })
-      next('Something crashed and burned')
+      next({ code: 500, message: 'Something crashed and burned'})
     })
 }
 
@@ -152,7 +152,7 @@ router.post('/:id/messages', (req, res) => {
 });
 
 router.use((err, req, res, next) => {
-  res.status(500).json({ message: err })
+  res.status(err.code).json({ message: err.message })
 });
 
 module.exports = router;
