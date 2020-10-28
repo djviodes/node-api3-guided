@@ -11,6 +11,7 @@ const ourAwesomeMiddleware = (adjective) => (req, res, next) => {
   // add information to the req object (for the benefit of middlewares downstream)
   // verify and validate info comming in the req (like making sure an :id exists)
   // make sure the body of the request has certain properties...
+  res.append('X-Lambda', 'web-35');
   console.log(`this middleware is rather ${adjective}`);
   next();
 };
