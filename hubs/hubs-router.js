@@ -7,6 +7,7 @@ const router = express.Router();
 
 const validateId = (req, res, next) => {
   const { id } = req.params;
+  Hubs.findById(id)
 }
 
 router.use((req, res, next) => {
