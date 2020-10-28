@@ -19,7 +19,8 @@ const ourAwesomeMiddleware = (adjective) => (req, res, next) => {
 
 const moodyGateKeeper = (req, res, next) => {
   // get seconds of Unix time `new Date().getSeconds()`
-  //
+  // if the seconds multiple of 3, respond with a 403 and a "not allowed" message
+  // otherwise call next to allow the request to proceed...
 }
 
 // adding global middlewares with server.use
