@@ -8,7 +8,7 @@ const router = express.Router();
 const validateId = (req, res, next) => {
   const { id } = req.params;
   Hubs.findById(id)
-    .then(data => {
+    .then(data => { // if id legit -> data is **object** (the hub) otherwise **undefined**
       console.log(data)
     })
     .catch(error => {
