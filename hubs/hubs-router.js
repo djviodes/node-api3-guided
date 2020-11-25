@@ -5,6 +5,36 @@ const Messages = require('../messages/messages-model.js');
 
 const router = express.Router();
 
+const validateBodyForNameAndText = (req, res, next) => {
+  // Validate req.body
+  // Make sure req.body has certain properties { name, text }
+}
+
+const validateId = (req, res, next) => {
+  const { id } = req.params;
+  Hubs.findById(id)
+    .then(data => { // If id legit -> data is **object** (the hub) otherwise **undefined**
+      console.log(data);
+      if (data) {
+        // Tack the hub to the req (that way endpoints downstream have the hub already!!!)
+        req.hub = data
+        // Allow the req/res continue traveling (with the hub attached to req)
+        next()
+      } else {
+        next({ code: 400, message: 'There is no hub with id ' + id })
+      }
+    })
+    .catch(error => {
+      console.log(error.message);
+      next({ code: 500, message: 'Something crashed and burned' })
+    });
+};
+
+router.use((req, res, next) => {
+  console.log('Inside the hubs router');
+  next();
+})
+
 // this only runs if the url has /api/hubs in it
 router.get('/', (req, res) => {
   Hubs.find(req.query)
@@ -22,22 +52,22 @@ router.get('/', (req, res) => {
 
 // /api/hubs/:id
 
-router.get('/:id', (req, res) => {
-  Hubs.findById(req.params.id)
-    .then(hub => {
-      if (hub) {
-        res.status(200).json(hub);
-      } else {
-        res.status(404).json({ message: 'Hub not found' });
-      }
-    })
-    .catch(error => {
-      // log error to server
-      console.log(error);
-      res.status(500).json({
-        message: 'Error retrieving the hub',
-      });
-    });
+router.get('/:id', [validateId], (req, res) => {
+  // Hubs.findById(req.params.id)
+  //   .then(hub => {
+  //     if (hub) {
+        res.status(200).json(req.hub);
+  //     } else {
+  //       res.status(404).json({ message: 'Hub not found' });
+  //     }
+  //   })
+  //   .catch(error => {
+  //     // log error to server
+  //     console.log(error);
+  //     res.status(500).json({
+  //       message: 'Error retrieving the hub',
+  //     });
+  //   });
 });
 
 router.post('/', (req, res) => {
@@ -121,6 +151,10 @@ router.post('/:id/messages', (req, res) => {
         message: 'Error getting the messages for the hub',
       });
     });
+});
+
+router.use((err, req, res, next) => {
+  res.status(err.code).json({ message: err.message })
 });
 
 module.exports = router;
